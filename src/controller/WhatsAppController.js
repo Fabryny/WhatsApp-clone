@@ -1,7 +1,8 @@
 class WhatsAppController {
     constructor() {
-        this.loadElements()
-        this.elementsPrototype()
+        this.loadElements();
+        this.elementsPrototype();
+        this.initEvents();
     }
     
     elementsPrototype(){
@@ -52,4 +53,34 @@ class WhatsAppController {
         })
     }
 
+    initEvents(){
+        this.el.myPhoto.on('click', e => {
+            this.closeAllLeftPanels();
+            this.el.panelEditProfile.show();
+            setTimeout(() => {
+                this.el.panelEditProfile.addClass('open');
+            }, 300)/* Timeout utilizado para ter tempo da animação css funcionar */
+        });
+
+        this.el.btnNewContact.on('click', e => {
+            this.closeAllLeftPanels();
+            this.el.panelAddContact.show();     
+            setTimeout(() => {
+                this.el.panelAddContact.addClass('open');
+            }, 300)/* Timeout utilizado para ter tempo da animação css funcionar */
+        })
+
+        this.el.btnClosePanelEditProfile.on('click', e => {
+            this.el.panelEditProfile.removeClass('open');
+        })
+
+        this.el.btnClosePanelAddContact.on('click', e => {
+            this.el.panelAddContact.removeClass('open');
+        })
+    }
+
+    closeAllLeftPanels(){
+        this.el.panelEditProfile.hide();
+        this.el.panelAddContact.hide();
+    }
 }
