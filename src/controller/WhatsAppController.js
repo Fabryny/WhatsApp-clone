@@ -44,6 +44,20 @@ class WhatsAppController {
         Element.prototype.hasClass = function(className) {
            return this.classList.contains(className)
         }
+
+        HTMLFormElement.prototype.getForm = function () {
+            return new FormData(this);
+        }
+
+        HTMLFormElement.prototype.toJSON = function () {
+            let json = {}
+
+            this.getForm().forEach((value, key) => {
+                json[name] = value
+            });
+        }
+
+
     }
 
     loadElements() {
@@ -68,15 +82,36 @@ class WhatsAppController {
             setTimeout(() => {
                 this.el.panelAddContact.addClass('open');
             }, 300)/* Timeout utilizado para ter tempo da animação css funcionar */
-        })
+        });
 
         this.el.btnClosePanelEditProfile.on('click', e => {
             this.el.panelEditProfile.removeClass('open');
-        })
+        });
 
         this.el.btnClosePanelAddContact.on('click', e => {
             this.el.panelAddContact.removeClass('open');
+        });
+
+        this.el.photoContainerEditProfile.on('click', e => {
+            this.el.inputProfilePhoto.click()
+        });
+
+        this.el.btnSavePanelEditProfile.on('click', e => {
+          console.log(this.el.inputNamePanelEditProfile.innerHTML)
+        });
+        
+        this.el.inputNamePanelEditProfile.on('keypress', e => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                this.el.btnSavePanelEditProfile.click()
+            }
+        });
+
+        this.el.formPanelAddContact.on('submit', e=> {
+            e.preventDefault();
+            let formData = new FormData(this.el.formPanelAddContact)/* Pega e trata todos os campos com base no name */
         })
+           
     }
 
     closeAllLeftPanels(){
