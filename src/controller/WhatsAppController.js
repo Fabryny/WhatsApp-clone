@@ -110,8 +110,42 @@ class WhatsAppController {
         this.el.formPanelAddContact.on('submit', e=> {
             e.preventDefault();
             let formData = new FormData(this.el.formPanelAddContact)/* Pega e trata todos os campos com base no name */
-        })
+        });
+
+        this.el.contactsMessagesList.querySelectorAll('.contact-item').forEach(item => {
+            item.on('click', e => {
+                this.el.main.css({
+                    display: 'flex',
+                })
+            });
+        });
+
+        this.el.btnAttach.on('click', e => {
+            e.stopPropagation();/* nao propaga para o pai (ativa apenas um eventListner, não dois.) */
+            this.el.menuAttach.addClass('open');
+            document.addEventListener('click', this.closeMenuAttach.bind(this))/* bind diz que o escopo this é da classe controller e nao do document */
+        });
            
+        this.el.btnAttachPhoto.on('click', e => {
+            console.log('photo')
+        });
+
+        this.el.btnAttachCamera.on('click', e => {
+           console.log('camera')
+        });
+
+        this.el.btnAttachDocument.on('click', e => {
+            console.log('documents')
+        });
+
+        this.el.btnAttachContact.on('click', e => {
+            console.log('contact')
+        });
+    }
+
+    closeMenuAttach(e){
+        document.removeEventListener('click', this.closeMenuAttach);
+        this.el.menuAttach.removeClass('open')
     }
 
     closeAllLeftPanels(){
