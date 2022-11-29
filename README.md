@@ -10,7 +10,7 @@ Lista de recursos usados em aula para este projeto
 
 | Recurso | Link |
 | ------ | ------ |
-| Webpack | https://webpack.js.org/ |
+| Webpack / Webpack Server | https://webpack.js.org/ |
 | Firebase Authentication | https://firebase.google.com/docs/auth/?authuser=0 |
 | Cloud Firestore | https://firebase.google.com/docs/firestore/?authuser=0 |
 | Cloud Functions | https://firebase.google.com/docs/functions/?hl=pt-br |
