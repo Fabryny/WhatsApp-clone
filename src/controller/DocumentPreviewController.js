@@ -50,18 +50,15 @@ export default class DocumentPreviewController{
 
                                 let paginaRenderizada = page.render(renderContext);
                                 paginaRenderizada.promise.then(()=>{
-                                    if(paginaRenderizada){
                                         s({
                                             src: canvas.toDataURL('image/jpeg'),
                                             info: `${pdf.numPages}página${(pdf.numPages > 1) ? 's' : ''}`
                                         });
-                                    }else {
-                                        console.log("entrou erro")
-                                        f(err)
-                                    }
+                                   
+                                }).catch(err => {
+                                    f(err)
                                 })
                             }).catch(err => {
-                                console.log("entrou error")
                                 f(err);
                             });
                                  
