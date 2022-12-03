@@ -4,10 +4,11 @@ module.exports = {
     mode: 'development',
     entry: {
         bundle: path.resolve(__dirname, 'src/app.js'),
+        'pdf.worker': 'pdfjs-dist/build/pdf.worker.entry.js'
     },
     output: {
       filename: '[name][contenthash].js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.join(__dirname, 'dist'),
       clean: true,
       assetModuleFilename: '[name][ext]'
     },
@@ -36,7 +37,7 @@ module.exports = {
     devtool: 'source-map',
     devServer: {
         static: {
-            directory: path.resolve(__dirname, 'dist')
+            directory: path.join(__dirname, 'dist')
         },
         port: 1943,
         open: true,
@@ -50,5 +51,8 @@ module.exports = {
             filename:'index.html',
             template: 'index.html'
         })
-    ]
+    ], resolve: {
+        fallback: { 'path': require.resolve('path-browserify') },
+        extensions: ['.jsx', '.js', '.tsx', '.ts'],
+     }
 }

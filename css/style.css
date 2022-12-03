@@ -14781,9 +14781,11 @@ html[dir] .r4crx ._2GgBs{
     text-align:center
 }
 .r4crx ._3m_5X{
-    z-index:2;
-    height:100%;
-    margin: 0 auto;
+    z-index: 2;
+    top: 24px;
+    height: 70%;
+    margin: 75px auto;
+    max-width: 100%;
 }
 ._2k1om{
     -webkit-flex:1;
@@ -16135,4 +16137,13 @@ html[dir=rtl] ._2ICcy:after{
 }
 #main {
     display:none;
+}
+._2oKVP{
+    display: flex;
+    justify-content: center;
+}
+#picture-camera{
+    height: 100%;
+    width: auto;
+    text-align: center;
 }
