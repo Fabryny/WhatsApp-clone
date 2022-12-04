@@ -32,6 +32,7 @@ export default class MicrophoneController extends ClassEvent{
 
     startRecorder(){
         if(this.isAvailable()){
+            
             this._mediaRecorder = new MediaRecorder(this._stream, {
                 mimeType: this._mimetype
             });
@@ -56,7 +57,8 @@ export default class MicrophoneController extends ClassEvent{
                     lastModified: Date.now()
                 });
             });
-            this._mediaRecorder.start()
+            this._mediaRecorder.start();
+            this.startTimer();
         }
     }
 
@@ -64,6 +66,20 @@ export default class MicrophoneController extends ClassEvent{
         if(this.isAvailable()){
             this._mediaRecorder.stop();
             this.stop();
+            this.stopTimer();
         }
+    }
+
+    startTimer(){
+        
+        let start = Date.now();
+
+        this._recordMicropgoneInterval = setInterval(() => { 
+            this.trigger('recordtimer', (Date.now() - start))
+        }, 100);
+    }
+
+    stopTimer(){
+        clearInterval(this._recordMicropgoneInterval);
     }
 }
