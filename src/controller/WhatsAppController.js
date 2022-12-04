@@ -2,13 +2,25 @@ import Format from './../util/Format'
 import CameraController from './CameraController'
 import MicrophoneController from './MicrophoneController'
 import DocumentPreviewController from './DocumentPreviewController'
+import FirebaseConfig from './../util/firebaseConfig'
 export default class WhatsAppController {
     constructor() {
+        this.initAuth();
         this.loadElements();
         this.elementsPrototype();
         this.initEvents();
     }
-    
+
+    initAuth() {
+        FirebaseConfig.auth().then((res) => {
+            console.log('res', res)
+            this._user = res.user;
+            this.el.appContent.css({
+                display: 'flex'
+            })
+        })
+    }
+
     elementsPrototype(){
         Element.prototype.hide = function() {
             this.style.display = 'none';
